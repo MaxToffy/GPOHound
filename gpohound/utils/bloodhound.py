@@ -376,7 +376,14 @@ class BloodHoundConnector:
                 RETURN t, c
                 """
 
-        return self.query(query, params)
+        outputs = self.query(query, params)
+
+        if outputs:
+            if isinstance(outputs, list):
+                return outputs
+            else:
+                return [outputs]
+        return None
 
     def add_edge_bhce(self, domain_sid, trustee_sid, computer_objectid, group_sid, group_name):
         """
@@ -458,7 +465,14 @@ class BloodHoundConnector:
 
                 RETURN t, c
                 """
-        return self.query(query, params)
+        outputs = self.query(query, params)
+
+        if outputs:
+            if isinstance(outputs, list):
+                return outputs
+            else:
+                return [outputs]
+        return None
 
     def add_extra_property(self, container_ids, property_key, property_value):
         """
@@ -479,4 +493,12 @@ class BloodHoundConnector:
                 YIELD node AS n
                 RETURN n
                 """
-        return self.query(query, params)
+                
+        outputs = self.query(query, params)
+
+        if outputs:
+            if isinstance(outputs, list):
+                return outputs
+            else:
+                return [outputs]
+        return None

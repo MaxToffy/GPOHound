@@ -54,9 +54,6 @@ class BloodHoundEnricher:
                                         except Exception as e:
                                             logging.debug("Error adding edges persistently for BloodHound CE: %s", e)
 
-                                    if not isinstance(outputs, list):
-                                        outputs = [outputs]
-
                                     for output in outputs:
                                         computer_name = output["c"]["samaccountname"]
                                         trustee_name = output["t"]["samaccountname"]
@@ -108,9 +105,6 @@ class BloodHoundEnricher:
                             outputs = self.bloodhound.add_extra_property(container_ids, key, value)
 
                             if outputs:
-                                if not isinstance(outputs, list):
-                                    outputs = [outputs]
-
                                 for output in outputs:
                                     computer_name = output["n"]["samaccountname"]
                                     output_enrichment.setdefault("Properties", {}).setdefault((key, value), set()).add(
@@ -135,10 +129,7 @@ class BloodHoundEnricher:
                             # Try to add new relationship between the privileged trustee and the machines in the container
                             outputs = self.bloodhound.add_edges(domain_sid, container_ids, trustees_sid, edge)
 
-                            if not isinstance(outputs, list):
-                                outputs = [outputs]
-
-                            for output in outputs:
+                            if outputs:
                                 for output in outputs:
                                     computer_name = output["c"]["samaccountname"]
                                     trustee_name = output["t"]["samaccountname"]
