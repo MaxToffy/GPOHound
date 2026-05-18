@@ -131,7 +131,7 @@ class ActiveDirectoryUtils:
 
                 confirm_domain = Confirm.ask(
                     f"[bold][underline]Is [red]{netbios_name}[/red] the NetBIOS name of [green]{domain_name}[/green][/underline][/bold]",
-                    default=True
+                    default=True,
                 )
 
                 if confirm_domain:

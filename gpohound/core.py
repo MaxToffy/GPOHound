@@ -12,6 +12,7 @@ from gpohound.utils.utils import search_keys_values, print_dict_as_tree, print_p
 from gpohound.utils.bloodhound import BloodHoundConnector
 from gpohound.utils.ad import ActiveDirectoryUtils
 
+
 class GPOHoundCore:
     """
     Class for parsing, processing and analysis of GPOs
@@ -294,7 +295,7 @@ class GPOHoundCore:
                             if (affected or ingestor) and domain_sid:
                                 found_containers = self.ad_utils.get_containers_affected_by_gpo(gpo_guid, domain_sid)
 
-                                if found_containers:    
+                                if found_containers:
                                     # Get analysis data and affected containers for enrichement
                                     if ingestor:
                                         analyses[gpo_guid] = {

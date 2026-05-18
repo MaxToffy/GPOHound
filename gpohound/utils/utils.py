@@ -528,7 +528,9 @@ def print_enriched(output_enrichment):
                     for property, machines in sorted_properties.items():
                         properties_table.add_row(property[0], str(property[1]), str(len(machines)))
 
-                    properties_node = parent.add("[bold blue]Properties [/bold blue]").add("[bold]Interesting properties added to computers [/bold]")
+                    properties_node = parent.add("[bold blue]Properties [/bold blue]").add(
+                        "[bold]Interesting properties added to computers [/bold]"
+                    )
                     properties_node.add(properties_table)
 
                 elif key == "Privilege Rights":

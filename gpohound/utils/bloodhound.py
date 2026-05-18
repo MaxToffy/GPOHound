@@ -493,7 +493,7 @@ class BloodHoundConnector:
                 YIELD node AS n
                 RETURN n
                 """
-                
+
         outputs = self.query(query, params)
 
         if outputs:

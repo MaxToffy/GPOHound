@@ -1,6 +1,7 @@
 import logging
 from rich.progress import track
 
+
 class BloodHoundEnricher:
     """
     Enrich BloodHound data
@@ -15,13 +16,17 @@ class BloodHoundEnricher:
         """
 
         output_enrichment = {"Memberships": {}, "Privilege Rights": {}, "Properties": {}}
-        
+
         # Iterates over GPOs
-        for data in track(analyses.values(), description=f"Enriching BloodHound with GPOs from {domain}", transient=True,):
+        for data in track(
+            analyses.values(),
+            description=f"Enriching BloodHound with GPOs from {domain}",
+            transient=True,
+        ):
             analysed_gpo = data["analysis"]
             container_ids = data["affected"]
 
-            # Applies local group memberships to computers
+            # Applies local group memberships to computers
             if "Memberships" in analysed_gpo:
 
                 for analysed_settings in analysed_gpo["Memberships"].values():
@@ -91,7 +96,7 @@ class BloodHoundEnricher:
                                                 trustee_name, set()
                                             ).add(computer_name)
 
-            # Adds interesting properties to computers
+            # Adds interesting properties to computers
             if "Registry" in analysed_gpo:
                 for analysed_settings in analysed_gpo["Registry"].values():
 
@@ -111,7 +116,7 @@ class BloodHoundEnricher:
                                         computer_name
                                     )
 
-            # Adds relationships to computers where trustees can escalate priviliges
+            # Adds relationships to computers where trustees can escalate priviliges
             if "Privilege Rights" in analysed_gpo:
                 for analysed_settings in analysed_gpo["Privilege Rights"].values():
 

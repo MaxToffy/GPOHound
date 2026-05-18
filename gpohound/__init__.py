@@ -214,7 +214,7 @@ def main():
         )
 
     elif args.command == "analysis":
-        
+
         # Bloodhound Ingestor
         if args.enrich_ce:
             ingestor = "bh-ce"
@@ -222,7 +222,7 @@ def main():
             ingestor = "bh-legacy"
         else:
             ingestor = ""
-        
+
         gpohound_core.analyser(
             args.sysvol_path,
             domains,
