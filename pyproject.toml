@@ -1,6 +1,6 @@
 [project]
 name = "gpohound"
-version = "1.0.0"
+version = "1.1.0"
 description = "GPO dumper and analyser"
 readme = "README.md"
 requires-python = ">=3.10"
